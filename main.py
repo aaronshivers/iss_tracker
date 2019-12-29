@@ -4,6 +4,7 @@ import turtle
 import time
 
 from settings import Settings
+from location import Location
 
 
 class IssTracker:
@@ -22,8 +23,8 @@ class IssTracker:
 
     def run_iss_tracker(self):
         self.get_people()
-        self.draw_huston()
-        self.draw_independence()
+        houston = Location(29.5502, -95.097)
+        independence = Location(39.091118, -94.415504)
         while True:
             self._update_screen()
 
@@ -58,52 +59,6 @@ class IssTracker:
 
         iss.penup()
         iss.goto(lon, lat)
-
-    def draw_huston(self):
-        # space center, Huston
-        lat = 29.5502
-        lon = -95.097
-
-        location = turtle.Turtle()
-        location.penup()
-        location.color('yellow')
-        location.goto(lon, lat)
-        location.dot(5)
-        location.hideturtle()
-
-        url = 'http://api.open-notify.org/iss-pass.json'
-        url = url + '?lat=' + str(lat) + '&lon=' + str(lon)
-        response = urllib.request.urlopen(url)
-        result = json.loads(response.read())
-
-        over = result['response'][1]['risetime']
-
-        # print over
-        style = ('Arial', 6, 'bold')
-        location.write(time.ctime(over), font=style)
-
-    def draw_independence(self):
-        # Independence, MO
-        lat = 39.091118
-        lon = -94.415504
-
-        location = turtle.Turtle()
-        location.penup()
-        location.color('yellow')
-        location.goto(lon, lat)
-        location.dot(5)
-        location.hideturtle()
-
-        url = 'http://api.open-notify.org/iss-pass.json'
-        url = url + '?lat=' + str(lat) + '&lon=' + str(lon)
-        response = urllib.request.urlopen(url)
-        result = json.loads(response.read())
-
-        over = result['response'][1]['risetime']
-
-        # print over
-        style = ('Arial', 6, 'bold')
-        location.write(time.ctime(over), font=style)
 
 
 if __name__ == '__main__':
