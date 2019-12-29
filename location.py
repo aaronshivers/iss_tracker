@@ -11,7 +11,7 @@ class Location:
 
         location = turtle.Turtle()
         location.penup()
-        location.color('yellow')
+        location.color('cyan')
         location.goto(self.longitude, self.latitude)
         location.dot(5)
         location.hideturtle()

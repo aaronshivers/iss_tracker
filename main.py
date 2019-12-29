@@ -1,5 +1,3 @@
-import json
-import urllib.request
 import turtle
 
 from settings import Settings
@@ -35,7 +33,8 @@ class IssTracker:
 
     @staticmethod
     def get_people():
-        People()
+        people = People()
+        print(people)
 
     def get_iss(self):
         Iss(self.screen)

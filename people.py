@@ -4,12 +4,17 @@ import json
 
 class People:
     def __init__(self):
-        url = 'http://api.open-notify.org/astros.json'
-        response = urllib.request.urlopen(url)
-        result = json.loads(response.read())
-        print('People in Space:', result['number'])
+        self.url = 'http://api.open-notify.org/astros.json'
+        self.response = urllib.request.urlopen(self.url)
+        self.result = json.loads(self.response.read())
 
-        people = result['people']
+        self.people = self.result['people']
 
-        for p in people:
+        for p in self.people:
             print(p['name'], 'in', p['craft'])
+
+    def __repr__(self):
+        return f'People in Space: {self.people_count()}'
+
+    def people_count(self):
+        return self.result['number']
