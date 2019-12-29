@@ -5,6 +5,7 @@ import turtle
 from settings import Settings
 from location import Location
 from people import People
+from iss import Iss
 
 
 class IssTracker:
@@ -23,6 +24,7 @@ class IssTracker:
 
     def run_iss_tracker(self):
         self.get_people()
+        self.get_iss()
         houston = Location(29.5502, -95.097)
         independence = Location(39.091118, -94.415504)
         while True:
@@ -31,8 +33,12 @@ class IssTracker:
     def _update_screen(self):
         self.screen.update()
 
-    def get_people(self):
-        People(self.screen)
+    @staticmethod
+    def get_people():
+        People()
+
+    def get_iss(self):
+        Iss(self.screen)
 
 
 if __name__ == '__main__':
